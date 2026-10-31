@@ -1,0 +1,11 @@
+# Copy to .dev.vars for `npm run dev`; in production set each with `wrangler secret put NAME`.
+MUDEER_CLIENT_SECRET=
+MUDEER_WEBHOOK_SECRET=
+ANTHROPIC_API_KEY=
+# The daily report's source (only the one REPORT_SOURCE names)
+METABASE_URL=
+METABASE_API_KEY=
+METABASE_CARD_ID=
+AMPLITUDE_API_KEY=
+AMPLITUDE_SECRET_KEY=
+AMPLITUDE_EVENTS=Subscription Started,Subscription Cancelled

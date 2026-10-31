@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mudeer-agent-example",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Tokens per workspace, delivery ids already handled, stops asked for, OAuth states.
+  "kv_namespaces": [{ "binding": "STORE", "id": "<your-kv-namespace-id>" }],
+  // Every weekday at 06:00 UTC the daily report; every hour at :30 the catch-up on missed sessions.
+  "triggers": { "crons": ["0 6 * * 1-5", "30 * * * *"] },
+  "observability": { "enabled": true },
+  "vars": {
+    "MUDEER_CLIENT_ID": "<your-client-id>",
+    "WORKER_URL": "https://mudeer-agent-example.<you>.workers.dev",
+    "MUDEER_API": "https://api.mudeer.co",
+    "MUDEER_MCP": "https://mcp.mudeer.co/mcp",
+    "MUDEER_APP": "https://app.mudeer.co",
+    // The daily report: the task whose thread receives it, and where the numbers come from
+    // (metabase | amplitude). Empty: the report is off.
+    "REPORT_TASK": "",
+    "REPORT_SOURCE": ""
+  }
+}
