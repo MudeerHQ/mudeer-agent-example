@@ -1,0 +1,14 @@
+{
+  "name": "mudeer-agent-example",
+  "version": "0.1.0",
+  "description": "An example agent for Mudeer: receives the webhook, verifies it, and answers on the session through the REST routes and the MCP server.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20.10" },
+  "scripts": {
+    "start": "node src/server.js",
+    "report": "node examples/daily-report/report.js",
+    "test": "node --test test/"
+  },
+  "license": "MIT"
+}
