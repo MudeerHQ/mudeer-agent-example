@@ -60,8 +60,9 @@ key (optional: without it the agent still answers, echoing the request, so the w
 
 ### The daily report
 
-Set `REPORT_TASK` (the task whose thread receives it, `OPS-12`) and `REPORT_SOURCE` (`metabase` or
-`amplitude`) in `wrangler.jsonc`, the source's secrets (`.dev.vars.example` lists them), and the
+Set `REPORT_TASK` (the task whose thread receives it, `OPS-12`), or `REPORT_PING_THREAD` (the id of a
+Pings conversation the agent is in, a group the team called it into or a team's Majlis, so the
+report lands in the chat), and `REPORT_SOURCE` (`metabase` or `amplitude`) in `wrangler.jsonc`, the source's secrets (`.dev.vars.example` lists them), and the
 cron in `triggers` does the rest, in every workspace the agent is installed in. `readMetrics` in
 `src/lib/report.ts` is the only place that knows the source: swap it for a database, a sheet,
 your own API.

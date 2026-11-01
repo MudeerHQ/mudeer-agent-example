@@ -11,6 +11,8 @@ export interface Env {
   MUDEER_MCP: string;
   MUDEER_APP: string;
   REPORT_TASK?: string;
+  /** Instead of a task: the Pings conversation (its id) the report goes to; the agent must be in it. */
+  REPORT_PING_THREAD?: string;
   REPORT_SOURCE?: "metabase" | "amplitude" | "";
   METABASE_URL?: string;
   METABASE_API_KEY?: string;

@@ -58,6 +58,10 @@ export class Mudeer {
   openOnIssue(issueId: string, externalUrls?: Array<{ label: string; url: string }>) {
     return this.rest<{ agentSession: { id: string } }>("POST", "/agent/sessions/on-issue", { issueId, externalUrls });
   }
+  /** A session in a Pings conversation the agent is already in (its DM, a group it was called into, a team's Majlis). */
+  openOnPing(pingThreadId: number) {
+    return this.rest<{ agentSession: { id: string } }>("POST", "/agent/sessions/on-ping", { pingThreadId });
+  }
   /** The agent's sessions that reached it, newest first: what to read after being down. */
   sessions(first = 50) {
     return this.rest<{ nodes: Array<{ id: string; status: string; issue: { identifier: string; title: string; description: string } | null }> }>("GET", `/agent/sessions?first=${first}`);

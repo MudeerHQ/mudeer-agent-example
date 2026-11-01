@@ -51,13 +51,19 @@ export function markdownReport(metrics: Metric[], date: string): string {
   return `**Daily report, ${date}**\n\n| Metric | Value |\n| --- | ---: |\n${rows}`;
 }
 
-/** Posts today's report in every workspace the agent is installed in. Off while REPORT_TASK is empty. */
+/**
+ * Posts today's report in every workspace the agent is installed in: in a task's thread
+ * (REPORT_TASK), or straight into a Pings conversation the agent is in (REPORT_PING_THREAD: a
+ * group the team called it into, or a team's Majlis). Off while both are empty.
+ */
 export async function dailyReport(env: Env): Promise<void> {
-  if (!env.REPORT_TASK) return;
+  if (!env.REPORT_TASK && !env.REPORT_PING_THREAD) return;
   const date = new Date().toISOString().slice(0, 10);
   for (const organizationId of await installedWorkspaces(env)) {
     const mudeer = new Mudeer(env, organizationId);
-    const { agentSession } = await mudeer.openOnIssue(env.REPORT_TASK, [{ label: "Source", url: env.METABASE_URL ?? "https://amplitude.com" }]);
+    const { agentSession } = env.REPORT_PING_THREAD
+      ? await mudeer.openOnPing(Number(env.REPORT_PING_THREAD))
+      : await mudeer.openOnIssue(env.REPORT_TASK!, [{ label: "Source", url: env.METABASE_URL ?? "https://amplitude.com" }]);
     await mudeer.thought(agentSession.id, "Reading today's numbers…", true);
     try {
       await mudeer.response(agentSession.id, markdownReport(await readMetrics(env), date));

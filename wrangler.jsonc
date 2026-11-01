@@ -15,9 +15,11 @@
     "MUDEER_API": "https://api.mudeer.co",
     "MUDEER_MCP": "https://mcp.mudeer.co/mcp",
     "MUDEER_APP": "https://app.mudeer.co",
-    // The daily report: the task whose thread receives it, and where the numbers come from
-    // (metabase | amplitude). Empty: the report is off.
+    // The daily report: the task whose thread receives it, or the Pings conversation (its id) the
+    // agent is in that receives it, and where the numbers come from (metabase | amplitude). Both
+    // empty: the report is off.
     "REPORT_TASK": "",
+    "REPORT_PING_THREAD": "",
     "REPORT_SOURCE": ""
   }
 }
