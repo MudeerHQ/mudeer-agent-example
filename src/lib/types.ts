@@ -34,7 +34,8 @@ export interface AppEvent {
   webhookTimestamp: number;
 }
 
-export type Trigger = "delegation" | "mention" | "reply" | "card" | "stop" | "undelegation" | "ping" | "retry";
+/** `descriptionMention`: the agent named in the task's description, a delegation-shaped session. */
+export type Trigger = "delegation" | "mention" | "descriptionMention" | "reply" | "card" | "stop" | "undelegation" | "ping" | "retry";
 
 export interface AgentSessionEvent extends AppEvent {
   type: "AgentSessionEvent";
