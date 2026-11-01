@@ -122,7 +122,7 @@ function userMessage(event: AgentSessionEvent): string {
 
 /** Without a model key the agent still answers, so the webhook and the routes can be tried. */
 function echo(event: AgentSessionEvent, request: string): string {
-  const title = event.agentSession.issue?.title;
+  const title = event.agentSession.task?.title;
   return [
     title ? `I read **${title}**.` : "I read the request.",
     `You asked:\n\n> ${request.replace(/\n/g, "\n> ")}`,
