@@ -63,7 +63,7 @@ export async function dailyReport(env: Env): Promise<void> {
     const mudeer = new Mudeer(env, organizationId);
     const { agentSession } = env.REPORT_PING_THREAD
       ? await mudeer.openOnPing(Number(env.REPORT_PING_THREAD))
-      : await mudeer.openOnIssue(env.REPORT_TASK!, [{ label: "Source", url: env.METABASE_URL ?? "https://amplitude.com" }]);
+      : await mudeer.openOnTask(env.REPORT_TASK!, [{ label: "Source", url: env.METABASE_URL ?? "https://amplitude.com" }]);
     await mudeer.thought(agentSession.id, "Reading today's numbers…", true);
     try {
       await mudeer.response(agentSession.id, markdownReport(await readMetrics(env), date));

@@ -55,8 +55,8 @@ export class Mudeer {
     return this.rest("PATCH", `/agent/sessions/${sessionId}`, fields);
   }
   /** A session the agent opens itself on a task; nothing is sent back, it made it. */
-  openOnIssue(issueId: string, externalUrls?: Array<{ label: string; url: string }>) {
-    return this.rest<{ agentSession: { id: string } }>("POST", "/agent/sessions/on-issue", { issueId, externalUrls });
+  openOnTask(taskId: string, externalUrls?: Array<{ label: string; url: string }>) {
+    return this.rest<{ agentSession: { id: string } }>("POST", "/agent/sessions/on-task", { taskId, externalUrls });
   }
   /** A session in a Pings conversation the agent is already in (its DM, a group it was called into, a team's Majlis). */
   openOnPing(pingThreadId: number) {

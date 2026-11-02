@@ -17,7 +17,7 @@ first, then follow the code.
 | Stops on `signal: "stop"`, even mid-run (a flag in KV read before every step) | `agentClient.ts` |
 | The install, tokens per workspace in KV, refresh, `OAuthApp revoked` forgets them | `src/lib/oauth.ts` |
 | Every hour: sessions missed while down (`GET /agent/sessions`) are answered | `src/lib/catchUp.ts` |
-| Every weekday morning: a report of your numbers in a task's thread (`POST /agent/sessions/on-issue`) | `src/lib/report.ts` |
+| Every weekday morning: a report of your numbers in a task's thread (`POST /agent/sessions/on-task`) | `src/lib/report.ts` |
 | The event and activity shapes | `src/lib/types.ts` |
 
 ## Run it
