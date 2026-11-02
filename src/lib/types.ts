@@ -50,8 +50,8 @@ export interface AgentSessionEvent extends AppEvent {
     summary: string | null;
     creatorId: string | null;
     creator: { id: string; name: string; email: string | null; avatarUrl: string | null; url: string | null } | null;
-    issueId: string | null;
-    issue: {
+    taskId: string | null;
+    task: {
       id: string;
       identifier: string;
       title: string;

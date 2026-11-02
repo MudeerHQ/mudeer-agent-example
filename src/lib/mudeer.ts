@@ -64,7 +64,7 @@ export class Mudeer {
   }
   /** The agent's sessions that reached it, newest first: what to read after being down. */
   sessions(first = 50) {
-    return this.rest<{ nodes: Array<{ id: string; status: string; issue: { identifier: string; title: string; description: string } | null }> }>("GET", `/agent/sessions?first=${first}`);
+    return this.rest<{ nodes: SessionNode[] }>("GET", `/agent/sessions?first=${first}`);
   }
   session(id: string) {
     return this.rest<{ agentSession: { id: string; status: string; activities: Array<{ type: string; userId: string | null }> } }>("GET", `/agent/sessions/${id}`);
@@ -89,3 +89,6 @@ export class Mudeer {
     return result.structuredContent ?? asText;
   }
 }
+
+/** A session as `GET /agent/sessions` lists it, the fields the catch-up reads. */
+export type SessionNode = { id: string; status: string; taskId: string | null; task: { identifier: string; title: string; description: string } | null };
